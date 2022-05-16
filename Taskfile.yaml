@@ -1,0 +1,16 @@
+---
+version: "3"
+vars:
+  PROJECT_DIR:
+    sh: "git rev-parse --show-toplevel"
+env:
+  ENV: environment-variables
+
+dotenv: ["{{.ENV}}/docker-vm.env"]
+
+includes:
+  precommit: .taskfiles/PrecommitTasks.yaml
+  terraform: .taskfiles/TerraformTasks.yaml
+  ansible: .taskfiles/AnsibleTasks.yaml
+
+task:

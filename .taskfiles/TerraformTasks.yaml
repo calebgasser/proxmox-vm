@@ -1,0 +1,53 @@
+---
+version: "3"
+
+tasks:
+  all:configure:
+    desc: Run all configs.
+    deps: [docker-vm:configure]
+
+  all:init:
+    desc: Run all inits.
+    deps: [docker-vm:init]
+
+  all:plan:
+    desc: Run all plans.
+    deps: [docker-vm:plan]
+
+  all:apply:
+    desc: Run all applys.
+    deps: [docker-vm:apply]
+
+  all:destroy:
+    desc: Run all destroys.
+    deps: [docker-vm:destroy]
+
+  docker-vm:configure:
+    desc: Configure docker-vm.
+    cmds:
+      - envsubst < "{{.PROJECT_DIR}}/templates/terraform/docker-vm/secret.sops.yaml" > "{{.PROJECT_DIR}}/terraform/docker-vm/secret.sops.yaml"
+      - sops --encrypt --in-place "{{.PROJECT_DIR}}/terraform/docker-vm/secret.sops.yaml"
+
+  docker-vm:init:
+    desc: Initialize docker-vm.
+    dir: "{{.PROJECT_DIR}}/terraform/docker-vm"
+    cmds:
+      - terraform init {{.CLI_ARGS}}
+
+  docker-vm:plan:
+    desc: Plan docker-vm.
+    dir: "{{.PROJECT_DIR}}/terraform/docker-vm"
+    cmds:
+      - terraform plan {{.CLI_ARGS}}
+
+  docker-vm:apply:
+    desc: Apply docker-vm.
+    dir: "{{.PROJECT_DIR}}/terraform/docker-vm"
+    cmds:
+      - terraform apply {{.CLI_ARGS}}
+
+  docker-vm:destroy:
+    desc: Destroy docker-vm.
+    dir: "{{.PROJECT_DIR}}/terraform/docker-vm"
+    cmds:
+      - terraform destroy {{.CLI_ARGS}}
