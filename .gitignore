@@ -1,0 +1,15 @@
+# Editors
+.vscode/
+# Trash
+.DS_Store
+Thumbs.db
+# vscode-sops
+.decrypted~*.yaml
+*.agekey
+# Terraform
+.terraform
+.terraform.tfstate*
+terraform.tfstate*
+# Other
+*.env
+*.log
