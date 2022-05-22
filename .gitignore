@@ -13,3 +13,4 @@ terraform.tfstate*
 # Other
 *.env
 *.log
+ansible/inventory/*-hosts.yaml

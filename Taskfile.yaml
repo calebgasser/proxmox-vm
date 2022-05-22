@@ -6,11 +6,13 @@ vars:
 env:
   ENV: environment-variables
 
-dotenv: ["{{.ENV}}/docker-vm.env"]
+dotenv:
+  ["{{.ENV}}/common.env", "{{.ENV}}/docker-vm.env", "{{.ENV}}/gitlab-vm.env"]
 
 includes:
   precommit: .taskfiles/PrecommitTasks.yaml
   terraform: .taskfiles/TerraformTasks.yaml
+  config: .taskfiles/ConfigureTasks.yaml
   ansible: .taskfiles/AnsibleTasks.yaml
 
 task:
