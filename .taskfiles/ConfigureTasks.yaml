@@ -1,0 +1,29 @@
+---
+version: "3"
+
+tasks:
+  all:
+    desc: Run all configs.
+    deps: [docker-vm, gitlab-vm]
+
+  common:
+    desc: Common configuration.
+    cmds:
+      - envsubst < "{{.PROJECT_DIR}}/templates/ansible/group_vars/all.yaml" > "{{.PROJECT_DIR}}/ansible/inventory/group_vars/all.sops.yaml"
+      - sops --encrypt --in-place "{{.PROJECT_DIR}}/ansible/inventory/group_vars/all.sops.yaml"
+
+  docker-vm:
+    deps: [common]
+    desc: Configure docker-vm.
+    cmds:
+      - envsubst < "{{.PROJECT_DIR}}/templates/terraform/docker-vm/secret.sops.yaml" > "{{.PROJECT_DIR}}/terraform/docker-vm/secret.sops.yaml"
+      - envsubst < "{{.PROJECT_DIR}}/templates/ansible/docker-vm/docker-hosts.yaml" > "{{.PROJECT_DIR}}/ansible/inventory/docker-hosts.yaml"
+      - sops --encrypt --in-place "{{.PROJECT_DIR}}/terraform/docker-vm/secret.sops.yaml"
+
+  gitlab-vm:
+    deps: [common]
+    desc: Configure gitlab-vm.
+    cmds:
+      - envsubst < "{{.PROJECT_DIR}}/templates/terraform/gitlab-vm/secret.sops.yaml" > "{{.PROJECT_DIR}}/terraform/gitlab-vm/secret.sops.yaml"
+      - envsubst < "{{.PROJECT_DIR}}/templates/ansible/gitlab-vm/gitlab-hosts.yaml" > "{{.PROJECT_DIR}}/ansible/inventory/gitlab-hosts.yaml"
+      - sops --encrypt --in-place "{{.PROJECT_DIR}}/terraform/gitlab-vm/secret.sops.yaml"

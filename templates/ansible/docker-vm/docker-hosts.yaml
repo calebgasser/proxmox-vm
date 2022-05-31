@@ -1,0 +1,5 @@
+---
+all:
+  hosts:
+    docker:
+      ansible_host: ${DOCKER_VM_0}

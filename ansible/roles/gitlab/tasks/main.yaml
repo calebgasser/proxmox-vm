@@ -1,0 +1,16 @@
+---
+- name: Create directory for docker-compose file.
+  file:
+    path: /docker
+    state: directory
+    mode: "0755"
+
+- name: Copy docker-compose.yaml
+  ansible.builtin.template:
+    src: docker-compose.yaml.j2
+    dest: /docker/docker-compose.yaml
+
+- name: Run docker command.
+  shell: docker-compose up -d
+  args:
+    chdir: /docker

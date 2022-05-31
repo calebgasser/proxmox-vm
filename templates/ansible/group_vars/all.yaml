@@ -1,0 +1,4 @@
+---
+secret_domain: ${SECRET_DOMAIN}
+nfs_ip: ${NFS_IP}
+gitlab_root_password: ${GITLAB_ROOT_PASSWORD}

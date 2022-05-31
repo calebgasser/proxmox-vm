@@ -1,0 +1,53 @@
+---
+version: '3.6'
+services:
+  web:
+    image: 'gitlab/gitlab-ee:latest'
+    restart: always
+    hostname: 'gitlab.{{ secret_domain }}'
+    environment:
+      GITLAB_ROOT_PASSWORD: '{{ gitlab_root_password }}'
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://gitlab.{{ secret_domain }}'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        # Add any other gitlab.rb configuration here, each on its own line
+    ports:
+      - '80:80'
+      - '443:443'
+      - '2224:22'
+    volumes:
+      - type: volume
+        source: config
+        target: /etc/gitlab
+        volume:
+          nocopy: true
+      - type: volume
+        source: log
+        target: /var/log/gitlab
+        volume:
+          nocopy: true
+      - type: volume
+        source: data
+        target: /var/opt/gitlab
+        volume:
+          nocopy: true
+    shm_size: '256m'
+volumes:
+  config:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr={{ nfs_ip }},nfsvers=4
+      device: ":/mnt/pool-1/gitlab/config"
+  log:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr={{ nfs_ip }},nfsvers=4
+      device: ":/mnt/pool-1/gitlab/log"
+  data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr={{ nfs_ip }},nfsvers=4
+      device: ":/mnt/pool-1/gitlab/data"

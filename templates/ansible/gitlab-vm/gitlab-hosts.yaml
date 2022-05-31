@@ -1,0 +1,5 @@
+---
+all:
+  hosts:
+    gitlab:
+      ansible_host: ${GITLAB_VM_0}

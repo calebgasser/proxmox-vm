@@ -1,0 +1,4 @@
+---
+- include_tasks: packages.yaml
+  tags:
+    - packages

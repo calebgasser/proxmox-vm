@@ -1,0 +1,23 @@
+secret_domain: ENC[AES256_GCM,data:Mry4kS1f6QENKkLLtg==,iv:KU1OpeTtoIF2q9ChoRlfM25vCu1bD/8/46wFOMK5jwE=,tag:IpWyJfo9Gw6SLSkW95T97A==,type:str]
+nfs_ip: ENC[AES256_GCM,data:X4n1RP1kWml+F9Y=,iv:U7Ar2SnrJwR/Zj+xOxWhv22+sc3AJOornMcvxhVulUw=,tag:J2rMGExfq8ydc8EceUAy0g==,type:str]
+gitlab_root_password: ENC[AES256_GCM,data:hcdFRPmKmuYCfgaDtA==,iv:GWweCkfEYG9jQd5Y9oL9Vf5Qsbx8F7/B2R05HlawpaQ=,tag:iXpKlcW0lOyGmOoX02C0mA==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age10cfaarw2s7u823kc44fwm8fjzr8c8hnukayd4f948da22nwx7vvqurhcuy
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBFcFhrS0tIbmJYUDFrdmRZ
+        ZHpJUk5qRWlWaWcrc0NJZXVJVnM2T1MvWUI0CmMzWkVPVHlOb0FHSnkwRStOcjM5
+        ZmppZEs2TTVGWUplWG15eUVZTjVRK2cKLS0tIGgyb3IzWm1IYWErNFFCbi9na0gx
+        MzJIUXJGODFtUXNzMitXNHZlWUF4cmMKIgECrBaLhHJj2oSUWnQg4W0uRmCgswNr
+        lqkZfQdYWR5JWCE9ozTkARYde0rnS0Up006ifOCoeo2J6zgJnDxGZA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2022-05-22T17:10:50Z"
+  mac: ENC[AES256_GCM,data:s4vMAbg3tLZVCRSd9FrcRAy6OJMaafzjnYhIwUaLxVJgdw9jj1zKTVrOispMTofL8XuqigQc1VGmIyUkFTtcYDLPUgdp0EZ6niV3v4mrS+zLLrEYU5soMAec5DCZmMdld9N5yLLzUtmmXTDJozPGDRYe+hvU5G8P2NSu5OyL5Yc=,iv:Fn7lI+QLlMK3JlUsxj1XR96G+mc2UaQIFRYG7ldskFI=,tag:cu5rz8/pWj8JwtOBxidGfw==,type:str]
+  pgp: []
+  unencrypted_regex: ^(kind)$
+  version: 3.7.2

@@ -1,0 +1,8 @@
+---
+- name: Upgrade all system packages
+  ansible.builtin.apt:
+    upgrade: full
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
